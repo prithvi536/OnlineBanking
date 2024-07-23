@@ -1,0 +1,37 @@
+﻿@model OnlineBanking_Final.Models.FixedDeposit
+
+<div class="container pb-3 mt-3">
+<h1>Fixed Deposit Details</h1>
+@if(Model != null){
+
+  
+
+<table class="table">
+    <tr>
+        <th>Account Number</th>
+        <td>@Model.AccountNumber</td>
+    </tr>
+    <tr>
+        <th>FD Amount</th>
+        <td>@Model.FdAmount</td>
+    </tr>
+    <tr>
+        <th>FD Opening Date</th>
+        <td>@Model.FdOpeningDate</td>
+    </tr>
+    <tr>
+        <th>Maturity Date</th>
+        <td>@Model.MaturityDate</td>
+    </tr>
+    <tr>
+        <th>Interest Rate</th>
+        <td>@Model.InterestRate</td>
+    </tr>
+    </table>
+    <a href="@Url.Action("DownloadPdf", "FixedDeposits", new { id = Model.FdId })" class="btn btn-primary">Download PDF</a>
+}
+else
+{
+    <p>Error</p>
+}
+</div>

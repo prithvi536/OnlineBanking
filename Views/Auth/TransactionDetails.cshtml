@@ -1,0 +1,36 @@
+﻿@model OnlineBanking_Final.Models.FundTransfer
+
+<div class="container pb-3 mt-3">
+<table class="table">
+    
+    <tr>Reference Number</th>
+        <td>@Model.ReferenceNumber</td>
+    </tr>
+
+    <tr>
+        <th>Transfer From</th>
+        <td>@Model.AccountHolderNumber</td>
+    </tr>
+    <tr>
+        <th>Transfer To</th>
+        <td>@ViewBag.AccountNumber</td>
+    </tr>
+
+    <tr>
+        <th>Transaction Date</th>
+        <td>@Model.TransactionDate</td>
+    </tr>
+    <tr>
+        <th>Amount (INR)</th>
+        <td>@Model.Amount</td>
+    </tr>
+    <tr>
+        <th>Payment Method</th>
+        <td>@Model.PaymentMethod</td>
+    </tr>
+    <tr>
+        <th>Status</th>
+        <td>@Model.Status</td>
+    </tr>
+</table>
+</div>

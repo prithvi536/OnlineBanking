@@ -1,0 +1,51 @@
+﻿@model IEnumerable<OnlineBanking_Final.Models.FixedDeposit>
+
+
+<div class="container pb-3 mt-3">
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert alert-success">
+        @Html.Raw(ViewBag.Message)
+    </div>
+}
+
+
+    <table class="table table-bordered" style="border-width:3px;border-color:black">
+        <thead>
+            <tr>
+                <th>FDID</th>
+                <th>Account Number</th>
+
+                <th>Principal Amount</th>
+                <th>Interest Rate (%)</th>
+                <th>Time Period (Months)</th>
+                <th>Start Date</th>
+                <th>Maturity Date</th>
+                <th>Maturity Amount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model)
+            {
+                <tr>
+                    <td>@x.FdId</td>
+                    <td>@x.AccountNumber</td>
+                    <td>@x.FdAmount</td>
+                    <td>@x.InterestRate</td>
+                    <td>@x.TenureInMonths</td>
+                    <td>@x.FdOpeningDate</td>
+                    <td>@x.MaturityDate</td>
+                    <td>@x.MaturityAmount</td>
+                    <td>
+                        <form asp-action="CloseFD" method="post">
+                            <input type="hidden" name="id" value="@x.FdId" />
+                            <button type="submit" class="btn btn-primary">Close FD</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

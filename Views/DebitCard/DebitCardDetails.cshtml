@@ -1,0 +1,73 @@
+﻿@model OnlineBanking_Final.Models.DebitCard
+
+<div class="container pl-3 mt-3">
+    <h2>Debit Card Details</h2>
+
+    <div>
+        <p>Card Number: @Model.CardNumber</p>
+        <p>Account Holder Name: @Model.AccountHoldername</p>
+        <p>Expiry Date: @Model.ExpiryDate</p>
+        <p>PIN: @Model.Pin</p>
+
+        <button class="btn btn-primary" id="changePinButton" onclick="toggleChangePinForm()">Change PIN</button>
+        <br />
+        <br />
+    </div>
+
+    <div id="changePinForm" style="display:none">
+        @using (Html.BeginForm("ChangePin", "DebitCard"))
+        {
+            @Html.Hidden("cardId", Model.Id)
+
+            <div>
+                @Html.Label("Old Pin")
+                @Html.Password("oldPin", null, new { required = "required" })
+                @Html.ValidationMessageFor(model => model.Pin)
+            </div>
+            <br />
+            <div>
+                @Html.Label("New Pin")
+                @Html.Password("newPin", null, new { required = "required", pattern = "[0-9]*", title = "Enter Valid Number", id = "newPin" })
+                <span id="newPinError" class="text-danger"></span>
+
+            </div>
+            <br />
+            <div>
+                @Html.Label("Confirm New Pin")
+                @Html.Password("confirmPin", null, new { required = "required", pattern = "[0-9]*", title = "Enter Valid Number", id = "confirmPin" })
+                <span id="confirmPinError" class="text-danger"></span>
+            </div>
+            <br />
+
+            <button class="btn btn-success" type="submit" onclick="validatePinChange(event)">Submit</button>
+        }
+    </div>
+
+    <div class="text-danger" id="pinErrorMessage">@ViewBag.Pin</div>
+    <div class="text-success">@ViewBag.Message</div>  
+</<div>
+    <script>
+        function toggleChangePinForm() {
+           document.getElementById('changePinForm').style.display = 'block';
+        }
+
+        function validatePinChange(event) {
+            const newPin = document.getElementById('newPin').value;
+            const confirmPin = document.getElementById('confirmPin').value;
+
+            if (newPin !== confirmPin) {
+                document.getElementById('confirmPinError').innerText = "New PIN and  Confirm PIN do not match.";
+                event.preventDefault();
+
+            }
+            else if (newPin.toString().length !== 4) {
+                document.getElementById('newPinError').innerText = "Please Enter 4 digit Pin";
+                event.preventDefault();
+            }
+            else {
+                document.getElementById('confirmPinError').innerText = "";
+            }
+        }
+
+    </script>
+

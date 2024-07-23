@@ -1,0 +1,91 @@
+﻿@model OnlineBanking_Final.Models.FixedDeposit
+
+<style>
+    .form-content {
+        padding: 20px;
+        border: 1px solid black;
+        border-radius: 10px;
+        width: 300px;
+    }
+
+    .calculator-content {
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 10px;
+        width: 300px;
+    }
+</style>
+
+<div class="container pb-3 mt-3">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Welcome To Fixed Deposits</h2>
+            <div class="form-content">
+                @using (Html.BeginForm())
+                {
+                    <div>
+                        <p>
+                            @Html.Label("Account") :
+                            @ViewBag.AccountNumber
+                        </p>
+                        <p>
+                            @Html.Label("FD Amount")
+                            <br />
+                            @Html.TextBoxFor(model => model.FdAmount, new { required = "required", id = "fdAmount" })
+                        <p style="color:red">@Html.ValidationMessageFor(model => model.FdAmount)</p>
+                        </p>
+                        <p>
+                            @Html.Label("Period of Deposit (In Months)")
+                            <br />
+                            @Html.TextBoxFor(model => model.TenureInMonths, new { required = "required", id = "tenureInMonths" })
+                        <p style="color:red">@Html.ValidationMessageFor(model => model.TenureInMonths)</p>
+                        </p>
+                        <p>
+                            Interest Rate: 6.5 %
+                        </p>
+                        <input type="submit" class="btn btn-success" value="OPEN FD" />
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="calculator-content">
+                <h3>FD Calculator</h3>
+                <p>
+                <p id="FdAmount">FD Amount:</p>
+                <input type="text" id="calcFdAmount" required />
+                </p>
+                <p>
+                <p id="Tenure">Period of Deposit (Months):</p>
+                <input type="text" id="calcTenure" required />
+                </p>
+                <p>
+                <p id="InterestRate">Interest Rate (%)</p>
+                <input type="number" id="calcInterestRate" step="0.1" required />
+                </p>
+                <button type="button" class="btn btn-primary" onclick="calculate()">Calculate</button>
+
+                <div id="calcResult" style="margin-top: 10px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script>
+        function calculate() {
+            var fdAmount = parseFloat(document.getElementById('calcFdAmount').value);
+            var tenureInMonths = parseInt(document.getElementById('calcTenure').value);
+            var interestRate = parseFloat(document.getElementById('calcInterestRate').value);
+
+
+            var interestRatePerMonth = interestRate/12/100
+            var interestEarned = fdAmount * interestRatePerMonth * tenureInMonths
+
+            var maturityAmount = fdAmount + interestEarned;
+
+            document.getElementById('calcResult').innerHTML = `
+                        <p>Maturity Amount after ${tenureInMonths} months:</p>
+                        <p><strong>${maturityAmount.toFixed(2)}</strong></p>`;  
+        }
+    </script>

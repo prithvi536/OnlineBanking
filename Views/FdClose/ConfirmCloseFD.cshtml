@@ -1,0 +1,49 @@
+﻿@model OnlineBanking_Final.Models.FDClosureViewModel
+
+<div class="container pb-3 mt-3">
+<h2>Confirm Close Fixed Deposit</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Principal Amount</th>
+        <td>@Model.FixedDeposit.FdAmount</td>
+    </tr>
+    <tr>
+        <th>Interest Rate (%)</th>
+        <td>@Model.FixedDeposit.InterestRate </td>
+    </tr>
+    <tr>
+        <th>Time Period (Months)</th>
+        <td>@Model.FixedDeposit.TenureInMonths</td>
+    </tr>
+    <tr>
+        <th>Start Date</th>
+        <td>@Model.FixedDeposit.FdOpeningDate</td>
+    </tr>
+    <tr>
+        <th>Maturity Date</th>
+        <td>@Model.FixedDeposit.MaturityDate</td>
+    </tr>
+    <tr>
+        <th>Calculated Interest</th>
+        <td>@Model.CalculatedIntrest</td>
+    </tr>
+    <tr>
+        <th>Maturity Amount</th>
+        <td>@Model.MaturityAmount</td>
+    </tr>
+</table>
+
+<form asp-action="ConfirmCloseFD" method="post">
+    <input type="hidden" name="id" value="@Model.FixedDeposit.FdId" />
+    <button type="submit" class="btn btn-primary">Confirm Close FD</button>
+</form>
+</div>
+
+
+
+
+
+
+
+

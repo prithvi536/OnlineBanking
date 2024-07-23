@@ -1,0 +1,46 @@
+﻿@model OnlineBanking_Final.Models.FundTransfer;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<style>
+    p{
+        color:red;
+    }
+</style>
+<div class="container pb-3 mt-3">
+    @using (Html.BeginForm())
+    {
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.SelectedPayeeId, "Payee")
+            @Html.DropDownList("SelectedPayeeId", ViewBag.Payees as SelectList, "-- Select Payee --", new { @class = "form-control" })
+            <p> @Html.ValidationMessageFor(x => x.SelectedPayeeId)</p>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.AccountHolderNumber, "Account Number Holder")
+         @*    @Html.TextBoxFor(x => x.AccountHolderNumber, new { @class = "form-control" }) *@
+         @*    @Html.TextBoxFor(x => x.AccountHolderNumber, new { @Value = ViewBag.AccountHolderNumber, @readonly = "readonly",@class = "form-control" })
+         *@    @Html.TextBoxFor(x => x.AccountHolderNumber, new { @class = "form-control", @readonly = "readonly" })
+
+            <p>@Html.ValidationMessageFor(x => x.AccountHolderNumber)</p>
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Amount, "Amount")
+            @Html.TextBoxFor(x => x.Amount, new { @class = "form-control" })
+            <p>@Html.ValidationMessageFor(x => x.Amount)</p>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.PaymentMethod, "Payment Method")
+            @Html.DropDownListFor(x => x.PaymentMethod, new SelectList(new[] { "NEFT", "IMPS", "RTGS" }), "-- Select Payment Method --", new { @class = "form-control" })
+            <p> @Html.ValidationMessageFor(x => x.PaymentMethod)</p>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Proceed</button>
+    }
+</div>

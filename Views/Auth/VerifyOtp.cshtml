@@ -1,0 +1,33 @@
+﻿@model OnlineBanking_Final.Models.FundTransfer
+@{
+    ViewBag.Title = "Verify OTP";
+}
+<div class="container pb-3 mt-3">
+<h2>Verify OTP</h2>
+
+    @using (Html.BeginForm("Transfer", "Auth",FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.SelectedPayeeId)
+        @Html.HiddenFor(m => m.AccountHolderNumber)
+        @Html.HiddenFor(m => m.ReferenceNumber)
+        @Html.HiddenFor(m => m.TransactionDate)
+        @Html.HiddenFor(m => m.Amount)
+        @Html.HiddenFor(m => m.PaymentMethod)
+        @Html.HiddenFor(m => m.Status)
+        <div>
+            <label for="otp">OTP</label>
+            <input type="text" id="otp" name="otp" required />
+        </div>
+
+        <div>
+            <button class="btn btn-primary" type="submit">Verify</button>
+        </div>
+
+
+    }
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Message</div>
+    }
+</div>
+

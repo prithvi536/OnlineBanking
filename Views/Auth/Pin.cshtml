@@ -1,0 +1,23 @@
+﻿@model OnlineBanking_Final.Models.AccountHolder
+
+<div class="container pb-3 mt-3">
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(m => m.AccountNumber)
+        @ViewBag.accountNumber
+@*         @Html.TextBoxFor(m => m.AccountNumber, new { @value = @ViewBag.accountNumber })
+ *@        <br>@Html.ValidationMessageFor(m => m.AccountNumber)
+    </div>
+    
+    <div>
+    @Html.LabelFor(m => m.TransactionPassword)
+        @Html.TextBoxFor(m => m.TransactionPassword , new{id= "pin"})
+    <br>@Html.ValidationMessageFor(m => m.TransactionPassword)
+    </div>
+    <button class="btn btn-primary" type="submit">Transfer </button>
+}
+</div>
+
+
+

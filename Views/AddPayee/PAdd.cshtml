@@ -1,0 +1,141 @@
+﻿@model OnlineBanking_Final.Models.Payee;
+
+<div class="container pb-3 mt-3">
+    @using (Html.BeginForm())
+    {
+        
+                <h2>Add Payee</h2>
+                <div class="form-group row">
+                    <label for="PayeeId" class="col-sm-4 col-form-label">Enter the Payee Id</label>
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(x => x.PayeeId, new { @class = "form-control" })
+                        <span class="text-danger">@Html.ValidationMessageFor(x => x.PayeeId)</span>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <label for="AccountNumberHolder" class="col-sm-4 col-form-label">Enter the Holder AccountNumber</label>
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(x => x.AccountNumberHolder, new { @class = "form-control", @readonly = "readonly" })
+                        <span class="text-danger">@Html.ValidationMessageFor(x => x.AccountNumberHolder)</span>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <label for="PayeeAccountNumber" class="col-sm-4 col-form-label">Enter the Payee Account Number</label>
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(x => x.PayeeAccountNumber, new { @class = "form-control" })
+                        <span class="text-danger">@Html.ValidationMessageFor(x => x.PayeeAccountNumber)</span>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <label for="NickName" class="col-sm-4 col-form-label">Enter the Payee Nick Name</label>
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(x => x.NickName, new { @class = "form-control" })
+                        <span class="text-danger">@Html.ValidationMessageFor(x => x.NickName)</span>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <div class="col-sm-12 text-center">
+                        <button type="submit" class="btn btn-primary">ADD</button>
+                    </div>
+                </div>
+                <div class="text-success">@ViewBag.PayeeAdded</div>
+          
+    }
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* <style>
+    td {
+        padding: 1em;
+    }
+
+    label {
+        font-size: 15pt;
+    }
+
+    button {
+        width: 10em;
+        height: 3em;
+        font-size: 15pt;
+    }
+
+    input {
+        width: 20em;
+        height: 2.5em;
+    }
+
+    span {
+        color: red;
+    }
+</style>
+<div>
+    @using (Html.BeginForm())
+    {
+        <div>
+
+            <table>
+                <span>@ViewBag.SuccessMessage</span>
+                <tr>
+
+                    <td colspan="2" style="text-align: center;"> <h1>Add Payee</h1></td>
+                </tr>
+
+                <tr>
+                    <td><label>Enter the Payee Id</label></td>
+                    <td>
+                        @Html.TextBoxFor(x => x.PayeeId)<br />
+                        <span> @Html.ValidationMessageFor(x => x.PayeeId)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Enter the Holder AccountNumber </label></td>
+                    <td>
+
+                        @Html.TextBoxFor(x => x.AccountNumberHolder, new { @Value = Model.AccountNumberHolder, @readonly = "readonly" })
+                        <span> @Html.ValidationMessageFor(x => x.AccountNumberHolder)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Enter the PayeeAcount Number</label></td>
+                    <td>
+                        @Html.TextBoxFor(x => x.PayeeAccountNumber)<br />
+                        <span> @Html.ValidationMessageFor(x => x.PayeeAccountNumber)</span>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label>Enter the Payee Nick Name</label></td>
+                    <td>
+                        @Html.TextBoxFor(x => x.NickName)<br />
+                        <span> @Html.ValidationMessageFor(x => x.NickName)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;"><button type="submit">ADD</button></td>
+                </tr>
+            </table>
+
+        </div>
+    }
+</div>
+
+ *@

@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "PdfLayout";
+}
+
+@model OnlineBanking_Final.Models.FixedDeposit
+<h1>Fixed Deposit Details</h1>
+@if (Model != null)
+{
+
+
+    <table class="table">
+        <tr>
+            <th>Fixed Deposit ID</th>
+            <td>@Model.FdId</td>
+        </tr>
+        <tr>
+            <th>Account Number</th>
+            <td>@Model.AccountNumber</td>
+        </tr>
+        <tr>
+            <th>FD Amount</th>
+            <td>@Model.FdAmount</td>
+        </tr>
+        <tr>
+            <th>FD Opening Date</th>
+            <td>@Model.FdOpeningDate</td>
+        </tr>
+        <tr>
+            <th>Maturity Date</th>
+            <td>@Model.MaturityDate</td>
+        </tr>
+        <tr>
+            <th>Interest Rate</th>
+            <td>@Model.InterestRate</td>
+        </tr>
+    </table>
+}
+else
+{
+    <p>Error</p>
+}
